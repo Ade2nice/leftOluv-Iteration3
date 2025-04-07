@@ -612,6 +612,55 @@
         </div>
       </div>
       
+<!-- CTA Text + Leave a Review Button -->
+<div class="text-center mt-5">
+  <p class="fs-5 text-muted">
+    You too enjoyed our food? 🥰<br>
+    Leave a review and help others discover it!
+  </p>
+  <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reviewModal">
+    ✍️ Leave a Review
+  </button>
+</div>
+
+<!-- Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-danger">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title">Share Your Experience</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="reviewForm">
+          <div class="mb-3">
+            <label for="review-name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="review-name" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Rating</label>
+            <select class="form-select" required>
+              <option value="">Select Rating</option>
+              <option value="5">★★★★★ - Excellent</option>
+              <option value="4">★★★★☆ - Good</option>
+              <option value="3">★★★☆☆ - Okay</option>
+              <option value="2">★★☆☆☆ - Poor</option>
+              <option value="1">★☆☆☆☆ - Bad</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="review-text" class="form-label">Your Review</label>
+            <textarea class="form-control" id="review-text" rows="3" placeholder="Tell us what you loved (or what we can improve!)" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-danger w-100">Submit Review</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
       <!-- Leave a Review Form
       <div class="leave-review">
         <h3>Share Your Experience</h3>

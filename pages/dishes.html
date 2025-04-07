@@ -25,8 +25,12 @@
   <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  
   <!-- Main CSS File -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <link href="../assets/css/main.css" rel="stylesheet">
+  
 
   <!-- =======================================================
   * Template Name: Yummy
@@ -53,7 +57,7 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="../index.html#hero">Homes</a></li>
+          <li><a href="../index.html#hero">Home</a></li>
           <li><a href="../index.html#about" >Find a Restaurant</a></li>
           <li><a href="dishes.html" class="active">Dishes </a></li>
           <li><a href="../index.html#review1" >Reviews</a></li>
@@ -87,8 +91,24 @@
       <div class="menu-section mt-5">
         <div class="text-center mb-4">
           <h2 class="fw-bold">Explore delicious dishes across restaurants </h2>
+    
+
+          <div class="d-flex justify-content-center mb-4">
+            <div class="input-group w-50 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+              <input
+                type="text"
+                class="form-control border-0 bg-light"
+                id="menuSearch"
+                placeholder="Search for a dish (e.g., Tiramisu, Pizza)..."
+                />
+              <button class="btn btn-danger" type="button" id="search-btn">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </div>
        
         </div>
+       
   
         <ul class="nav nav-pills mb-4 justify-content-center gap-2" id="menuTabs" role="tablist">
           <li class="nav-item" role="presentation">
@@ -763,6 +783,49 @@ Add to Cart
 
 
 </body>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("menuSearch");
+    const searchBtn = document.getElementById("search-btn");
+    const cards = document.querySelectorAll(".menu-item");
+
+    function performSearch() {
+      const term = searchInput.value.toLowerCase().trim();
+      let matchFound = false;
+
+      cards.forEach((card) => {
+        const name = card.querySelector("h5").innerText.toLowerCase();
+        const desc = card.querySelector("p").innerText.toLowerCase();
+        const isMatch = name.includes(term) || desc.includes(term);
+
+        card.closest(".col-lg-3").style.display = isMatch ? "block" : "none";
+        if (isMatch) matchFound = true;
+      });
+
+      // If nothing matches, show SweetAlert
+      if (!matchFound) {
+        Swal.fire({
+          icon: "error",
+          title: "No dishes match your search",
+          text: "Please try a different search term or use the filter options.",
+          background: "#fef3f3",
+          confirmButtonColor: "#d33",
+          confirmButtonText: "Okay",
+          customClass: {
+            title: "fw-bold",
+            popup: "rounded-4 shadow",
+            confirmButton: "btn btn-danger"
+          }
+        });
+      }
+    }
+
+    searchInput.addEventListener("input", performSearch);
+    searchBtn.addEventListener("click", performSearch);
+  });
+</script>
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -776,4 +839,5 @@ Add to Cart
       });
     });
     </script>
+
 </html>
